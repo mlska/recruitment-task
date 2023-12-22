@@ -5,10 +5,10 @@ import { NextApiRequest, NextApiResponse } from "next";
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const prisma = new PrismaClient();
 
-  console.log(req.method);
   switch (req.method) {
     case "GET":
       const events = await prisma.event.findMany();
+
       if (events?.length) {
         res.status(200).json(events);
       } else {
